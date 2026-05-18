@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>bewthr</title>
+<meta name="description" content="bewthr — in transit">
+<meta name="theme-color" content="#0A0A14">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230A0A14'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%2300F0FF'/%3E%3C/svg%3E">
+<style>
+:root{
+  --void:#0A0A14;
+  --cyan:#00F0FF;
+  --magenta:#FF2D95;
+  --dim:#5A5A75;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--void);
+  color:var(--cyan);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:16px;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  min-height:100dvh;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+.pip{
+  position:fixed;
+  top:max(1rem,env(safe-area-inset-top));
+  left:max(1rem,env(safe-area-inset-left));
+  font-size:0.75rem;
+  letter-spacing:0.05em;
+  color:var(--cyan);
+  display:flex;
+  align-items:center;
+  gap:0.5em;
+}
+.pip::before{
+  content:"";
+  display:inline-block;
+  width:0.5em;
+  height:0.5em;
+  border-radius:50%;
+  background:var(--cyan);
+}
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1.25rem;
+  padding:2rem 1rem;
+  text-align:center;
+}
+.wordmark{
+  font-weight:700;
+  font-size:clamp(3rem,12vw,6rem);
+  letter-spacing:-0.04em;
+  line-height:1;
+  color:var(--cyan);
+  display:inline-flex;
+  align-items:baseline;
+}
+.cursor{
+  color:var(--magenta);
+  margin-left:0.04em;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{
+  0%{opacity:1}
+  50%{opacity:0}
+}
+.subline{
+  font-size:0.875rem;
+  letter-spacing:0.2em;
+  color:var(--dim);
+  text-transform:lowercase;
+}
+@media (prefers-reduced-motion: reduce){
+  .cursor{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="pip" aria-hidden="true">in transit</div>
+<main>
+  <h1 class="wordmark">bewthr<span class="cursor" aria-hidden="true">_</span></h1>
+  <p class="subline">in transit</p>
+</main>
+</body>
+</html>
