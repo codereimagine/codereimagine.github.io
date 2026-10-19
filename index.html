@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>codereimagine</title>
-<meta name="description" content="A small lab building everyday tools the other way round — private by default, no accounts, no ads, fully open. Weather, time, the night sky, Earth's systems, network speed.">
-<meta name="theme-color" content="#05091a">
+<meta name="description" content="A small lab building everyday tools the other way round — private by default, no accounts, no ads, fully open. Weather, time, the night sky, Earth's systems, network speed. A design study.">
+<meta name="theme-color" content="#09090b">
 <meta name="color-scheme" content="dark">
 <meta property="og:title" content="codereimagine">
-<meta property="og:description" content="Everyday tools, built the other way round — private by default, no accounts, no ads, fully open.">
+<meta property="og:description" content="Everyday tools, built the other way round — private by default, no accounts, no ads, fully open. A design study.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://codereimagine.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%2305091a'/%3E%3Cpath d='M3 5l2.5 3L3 11' stroke='%2322d3ee' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 5l2.5 3L8 11' stroke='%23f5a623' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -17,94 +17,114 @@
 @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/space-grotesk-latin-wght-normal.woff2') format('woff2')}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 600;font-display:swap;src:url('fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2')}
 :root{
-  --void:#05091a; --panel:#0a1022; --line:#1b2746;
-  --text:#e9eefb; --dim:#9aa6c6; --faint:#8491b5;
+  /* A sheet of paper for ideas — in dark mode: near-black charcoal paper, faint
+     neutral graph rules, a neon margin line, light ink; the lab's neon accents. */
+  --paper:#09090b; --rule:rgba(255,255,255,.045); --rule-major:rgba(255,255,255,.085); --margin:rgba(255,92,122,.42);
+  --ink:#ececef; --dim:#a8a8b0; --faint:#8c8c95;
   --cyan:#22d3ee; --magenta:#d946ef; --gold:#f5a623;
+  --card:#121215; --card-line:#26262c;
   --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
   --disp:'Space Grotesk',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;background:var(--paper)}
 body{
-  background:var(--void); color:var(--text); font-family:var(--disp);
-  min-height:100dvh; line-height:1.5; position:relative; overflow-x:hidden;
+  color:var(--ink); font-family:var(--disp); min-height:100dvh; line-height:1.5; overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--rule-major) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule-major) 1px,transparent 1px),
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  background-position:-1px -1px;
   padding:max(1.1rem,env(safe-area-inset-top)) max(1.1rem,env(safe-area-inset-right)) max(2rem,env(safe-area-inset-bottom)) max(1.1rem,env(safe-area-inset-left));
 }
-.bg{position:fixed;inset:0;z-index:-2;background:
-  radial-gradient(120% 90% at 50% -10%, #0c1430 0%, #070c1e 55%, #04060f 100%)}
-.bg::before{content:"";position:absolute;inset:0;opacity:.14;
-  background-image:linear-gradient(#2a3a66 1px,transparent 1px),linear-gradient(90deg,#2a3a66 1px,transparent 1px);
-  background-size:46px 46px;mask-image:radial-gradient(130% 100% at 50% 0%, #000 34%, transparent 78%)}
-.bg::after{content:"";position:absolute;left:50%;top:-220px;width:900px;max-width:120vw;height:560px;transform:translateX(-50%);
-  background:radial-gradient(circle, rgba(34,211,238,.16) 0%, rgba(217,70,239,.08) 40%, transparent 70%);filter:blur(10px)}
-.wrap{max-width:1040px;margin:0 auto}
-header{text-align:center;padding:2.4rem 0 2.2rem}
+/* the notebook's red margin line */
+body::before{content:"";position:fixed;top:0;bottom:0;left:clamp(14px,4.5vw,64px);width:2px;background:var(--margin);pointer-events:none}
+.wrap{max-width:1080px;margin:0 auto;position:relative}
+header{text-align:center;padding:2.2rem 0 2rem}
 .pip{font-family:var(--mono);font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);display:inline-flex;align-items:center;gap:.6em}
 .pip i{color:var(--cyan);font-style:normal}
-h1{font-size:clamp(2.9rem,9vw,5rem);font-weight:700;letter-spacing:-.02em;line-height:.95;margin:1.1rem 0 .3rem}
+h1{font-size:clamp(2.9rem,9vw,5rem);font-weight:700;letter-spacing:-.02em;line-height:.95;margin:1rem 0 .3rem}
 h1 b{color:var(--cyan);font-weight:700}
-.lede{color:var(--dim);font-size:clamp(1.02rem,2.6vw,1.22rem);max-width:40ch;margin:.5rem auto 0}
-.axis{font-family:var(--mono);font-size:clamp(.95rem,2.6vw,1.12rem);font-weight:500;letter-spacing:.08em;margin-top:1.3rem}
+/* "Design study" — a rubber stamp on the sheet */
+.stamp{display:inline-block;margin:.9rem 0 .2rem;padding:.3rem .8rem;font-family:var(--mono);font-size:.82rem;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;color:#ff5c7a;border:2px solid #ff5c7a;border-radius:6px;
+  box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3px rgba(255,92,122,.5);transform:rotate(-2deg);opacity:.92}
+.lede{color:var(--dim);font-size:clamp(1.02rem,2.6vw,1.22rem);max-width:42ch;margin:.7rem auto 0}
+.axis{font-family:var(--mono);font-size:clamp(.95rem,2.6vw,1.12rem);font-weight:600;letter-spacing:.08em;margin-top:1.1rem}
 .axis .s{color:var(--cyan)} .axis .t{color:var(--magenta)} .axis .c{color:var(--gold)} .axis .sep{color:var(--faint)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:16px;margin-top:.6rem}
-.card{position:relative;display:flex;flex-direction:column;gap:.5rem;padding:22px 22px 20px;border-radius:16px;
-  background:linear-gradient(180deg, rgba(14,20,40,.72), rgba(8,12,26,.72));border:1px solid var(--line);
-  text-decoration:none;color:inherit;transition:border-color .18s, transform .18s, box-shadow .18s;overflow:hidden}
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--a)}
-.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb, var(--a) 60%, var(--line));box-shadow:0 16px 40px rgba(0,0,0,.4), 0 0 26px color-mix(in srgb,var(--a) 22%, transparent)}
-.card:focus-visible{outline:2px solid var(--a);outline-offset:2px}
-.top{display:flex;align-items:center;gap:12px}
-.badge{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#05070f;background:var(--a);box-shadow:0 0 18px color-mix(in srgb,var(--a) 50%, transparent)}
-.nm{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:.6rem}
+.card{position:relative;display:flex;flex-direction:column;gap:.55rem;padding:14px 14px 16px;border-radius:14px;
+  background:var(--card);border:1px solid var(--card-line);text-decoration:none;color:inherit;
+  box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 14px 30px -16px rgba(0,0,0,.7);
+  transition:transform .18s, box-shadow .18s, border-color .18s}
+.card:hover{transform:translateY(-3px) rotate(-.3deg);border-color:var(--a);box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 20px 40px -16px rgba(0,0,0,.8),0 0 24px color-mix(in srgb,var(--a) 20%,transparent)}
+.card:focus-visible{outline:2px solid var(--a);outline-offset:3px}
+/* the app screenshot, pinned to the sheet */
+.shot{position:relative;aspect-ratio:585/720;border-radius:10px;overflow:hidden;background:#050506;border:1px solid #26262c}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.shot::after{content:"";position:absolute;left:50%;top:-6px;width:74px;height:20px;transform:translateX(-50%) rotate(-2deg);
+  background:rgba(255,255,255,.12);box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.top{display:flex;align-items:center;gap:12px;margin-top:.35rem}
+.badge{width:36px;height:36px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#05070f;background:var(--a)}
+.nm{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
 .nm b{color:var(--a)}
 .tag{color:var(--dim);font-size:.98rem;flex:1}
-.meta{display:flex;align-items:center;justify-content:space-between;margin-top:.35rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em}
-.ax{color:var(--a);text-transform:uppercase;letter-spacing:.2em}
+.meta{display:flex;align-items:center;justify-content:space-between;margin-top:.15rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em}
+.ax{color:var(--a);text-transform:uppercase;letter-spacing:.2em;font-weight:600}
 .go{color:var(--faint)}
 .card:hover .go{color:var(--a)}
-.ethos{display:flex;flex-wrap:wrap;gap:.5rem .9rem;justify-content:center;margin:2.1rem auto 0;max-width:780px;
+.ethos{display:flex;flex-wrap:wrap;gap:.5rem .9rem;justify-content:center;margin:2.2rem auto 0;max-width:780px;
   font-family:var(--mono);font-size:.82rem;color:var(--dim)}
 .ethos span{display:inline-flex;align-items:center;gap:.5em}
 .ethos span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan)}
 footer{text-align:center;color:var(--faint);font-family:var(--mono);font-size:.8rem;margin-top:2.4rem;line-height:1.9}
-footer a{color:var(--dim);text-decoration:none}
+footer a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--card-line)}
 footer a:hover{color:var(--cyan)}
-@media (max-width:560px){header{padding:1.6rem 0 1.6rem}.card{padding:18px}}
+@media (max-width:560px){header{padding:1.5rem 0 1.5rem}.grid{gap:18px}}
+@media (prefers-reduced-motion:reduce){.card,.card:hover{transition:none;transform:none}}
 </style>
 </head>
 <body>
-<div class="bg"></div>
 <div class="wrap">
   <header>
     <div class="pip"><i>◢◤</i> codereimagine · the lab</div>
     <h1>code<b>reimagine</b></h1>
+    <div class="stamp">Design study</div>
     <p class="lede">Everyday tools, built the other way round — private by default, no accounts, no ads, fully open.</p>
     <div class="axis"><span class="s">space</span> <span class="sep">·</span> <span class="t">time</span> <span class="sep">·</span> <span class="c">continuum</span></div>
   </header>
 
   <main class="grid">
-    <a class="card" style="--a:#A6E4FF" href="https://codereimagine.github.io/starnav/">
+    <a class="card" style="--a:#22d3ee" href="https://codereimagine.github.io/starnav/">
+      <div class="shot"><img src="screens/starnav.jpg" width="585" height="1266" alt="starnav on a phone: a star field with heading guidance toward a chosen star" decoding="async"></div>
       <div class="top"><div class="badge">S</div><div class="nm">starnav</div></div>
       <div class="tag">Point at the sky — find what you're looking at. A night-sky navigator.</div>
       <div class="meta"><span class="ax">space</span> <span class="go">open ↗</span></div>
     </a>
-    <a class="card" style="--a:#FFB04D" href="https://codereimagine.github.io/uptyme/">
+    <a class="card" style="--a:#d946ef" href="https://codereimagine.github.io/uptyme/">
+      <div class="shot"><img src="screens/uptyme.jpg" width="585" height="1266" alt="uptyme on a phone: the Orbit face with the sun and moon on a ring around the time" decoding="async"></div>
       <div class="top"><div class="badge">U</div><div class="nm">uptyme</div></div>
       <div class="tag">Your time, anywhere on Earth — a Clock dial or an Orbit ring.</div>
       <div class="meta"><span class="ax">time</span> <span class="go">open ↗</span></div>
     </a>
     <a class="card" style="--a:#f5a623" href="https://codereimagine.github.io/bewthr/">
+      <div class="shot"><img src="screens/bewthr.jpg" width="585" height="1266" alt="bewthr on a phone: current weather over a live evening sky" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">B</div><div class="nm">be<b>wthr</b></div></div>
       <div class="tag">The weather, shown as a real, living sky — day, night, stars and the true moon.</div>
       <div class="meta"><span class="ax">continuum</span> <span class="go">open ↗</span></div>
     </a>
     <a class="card" style="--a:#7fd9ff" href="https://codereimagine.github.io/almanac/">
+      <div class="shot"><img src="screens/almanac.jpg" width="585" height="1266" alt="almanac on a phone: a glowing globe with live earthquake markers" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">A</div><div class="nm">almanac</div></div>
       <div class="tag">A living globe of Earth's systems — the planet, right now.</div>
       <div class="meta"><span class="ax">earth systems</span> <span class="go">open ↗</span></div>
     </a>
-    <a class="card" style="--a:#00E5CF" href="https://codereimagine.github.io/velocity/">
+    <a class="card" style="--a:#00e5cf" href="https://codereimagine.github.io/velocity/">
+      <div class="shot"><img src="screens/velocity.jpg" width="585" height="1266" alt="velocity on a phone: a completed speed test on a three-hand chronograph dial" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">V</div><div class="nm">velocity</div></div>
       <div class="tag">A network speed test, built as one chronograph instrument.</div>
       <div class="meta"><span class="ax">network</span> <span class="go">open ↗</span></div>
