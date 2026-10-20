@@ -76,7 +76,7 @@ h1 b{color:var(--cyan);font-weight:700}
   box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 14px 30px -16px rgba(0,0,0,.7);
   transition:transform .18s, box-shadow .18s, border-color .18s}
 .card:hover{transform:translateY(-3px) rotate(-.3deg);border-color:var(--a);box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 20px 40px -16px rgba(0,0,0,.8),0 0 24px color-mix(in srgb,var(--a) 20%,transparent)}
-.card:focus-visible{outline:2px solid var(--a);outline-offset:3px}
+.card:has(.go:focus-visible){outline:2px solid var(--a);outline-offset:3px}
 /* the app screenshot, pinned to the sheet */
 .shot{position:relative;aspect-ratio:585/996;border-radius:10px;overflow:hidden;background:#050506;border:1px solid #26262c}
 .shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
@@ -87,7 +87,19 @@ h1 b{color:var(--cyan);font-weight:700}
 .tag{color:var(--dim);font-size:.98rem;flex:1}
 .meta{display:flex;align-items:center;justify-content:space-between;margin-top:.15rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em}
 .ax{color:var(--a);text-transform:uppercase;letter-spacing:.2em;font-weight:600}
-.go{color:var(--faint)}
+.links{display:flex;align-items:center;gap:14px}
+.links a{color:var(--faint);text-decoration:none;outline:none}
+.go::after{content:"";position:absolute;inset:0;border-radius:inherit}  /* whole card opens the app */
+/* drafting callout: a dotted leader from the axis label to the links */
+.lead{flex:1;align-self:center;margin:0 12px;border-bottom:1px dotted color-mix(in srgb,var(--a) 40%,transparent);transform:translateY(1px)}
+/* readme = a small stamp, like the header's Design study mark, in the app's own ink */
+.rd{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 6px;font-size:.66rem;text-transform:uppercase;letter-spacing:.2em;
+  color:var(--a)!important;border:1px solid color-mix(in srgb,var(--a) 55%,transparent);border-radius:3px;
+  background:color-mix(in srgb,var(--a) 7%,transparent);transform:rotate(-2deg);transition:transform .2s,background-color .2s}
+.rd i{font-style:normal;font-family:Georgia,serif;font-size:.95rem;letter-spacing:0;line-height:1;opacity:.85}
+.rd::before{content:"";position:absolute;inset:-12px -8px}  /* 44px thumb target without changing the stamp */
+.rd:hover,.rd:focus-visible{transform:rotate(0);background:color-mix(in srgb,var(--a) 18%,transparent)}
+.rd:focus-visible{outline:2px solid var(--a);outline-offset:3px}
 .card:hover .go{color:var(--a)}
 .ethos{display:flex;flex-wrap:wrap;gap:.5rem .9rem;justify-content:center;margin:2.2rem auto 0;max-width:780px;
   font-family:var(--mono);font-size:.82rem;color:var(--dim)}
@@ -113,42 +125,42 @@ footer a:hover{color:var(--cyan)}
   </header>
 
   <main class="grid">
-    <a class="card" style="--a:#22d3ee" href="https://codereimagine.github.io/starnav/">
+    <div class="card" style="--a:#22d3ee">
       <div class="shot"><img src="screens/starnav.jpg" width="585" height="996" alt="starnav on a phone: a star field with heading guidance toward a chosen star" decoding="async"></div>
       <div class="top"><div class="badge">S</div><div class="nm">starnav</div></div>
       <div class="tag">Point at the sky — find what you're looking at. A night-sky navigator.</div>
-      <div class="meta"><span class="ax">space</span> <span class="go">open ↗</span></div>
-    </a>
-    <a class="card" style="--a:#d946ef" href="https://codereimagine.github.io/uptyme/">
+      <div class="meta"><span class="ax">space</span><span class="lead" aria-hidden="true"></span><span class="links"><a class="rd" href="https://github.com/codereimagine/starnav#readme" aria-label="starnav README on GitHub"><i aria-hidden="true">¶</i>readme</a><a class="go" href="https://codereimagine.github.io/starnav/" aria-label="Open starnav">open ↗</a></span></div>
+    </div>
+    <div class="card" style="--a:#d946ef">
       <div class="shot"><img src="screens/uptyme.jpg" width="585" height="996" alt="uptyme on a phone: the Orbit face with the sun and moon on a ring around the time" decoding="async"></div>
       <div class="top"><div class="badge">U</div><div class="nm">uptyme</div></div>
       <div class="tag">Your time, anywhere on Earth — a Clock dial or an Orbit ring.</div>
-      <div class="meta"><span class="ax">time</span> <span class="go">open ↗</span></div>
-    </a>
-    <a class="card" style="--a:#f5a623" href="https://codereimagine.github.io/bewthr/">
+      <div class="meta"><span class="ax">time</span><span class="lead" aria-hidden="true"></span><span class="links"><a class="rd" href="https://github.com/codereimagine/uptyme#readme" aria-label="uptyme README on GitHub"><i aria-hidden="true">¶</i>readme</a><a class="go" href="https://codereimagine.github.io/uptyme/" aria-label="Open uptyme">open ↗</a></span></div>
+    </div>
+    <div class="card" style="--a:#f5a623">
       <div class="shot"><img src="screens/bewthr.jpg" width="585" height="996" alt="bewthr on a phone: the Continuum face for Anchorage, Alaska — rain now, and the next 24 hours to scrub" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">B</div><div class="nm">be<b>wthr</b></div></div>
       <div class="tag">The weather, shown as a real, living sky — day, night, stars and the true moon.</div>
-      <div class="meta"><span class="ax">continuum</span> <span class="go">open ↗</span></div>
-    </a>
-    <a class="card" style="--a:#7fd9ff" href="https://codereimagine.github.io/almanac/">
+      <div class="meta"><span class="ax">continuum</span><span class="lead" aria-hidden="true"></span><span class="links"><a class="rd" href="https://github.com/codereimagine/bewthr#readme" aria-label="bewthr README on GitHub"><i aria-hidden="true">¶</i>readme</a><a class="go" href="https://codereimagine.github.io/bewthr/" aria-label="Open bewthr">open ↗</a></span></div>
+    </div>
+    <div class="card" style="--a:#7fd9ff">
       <div class="shot"><img src="screens/almanac.jpg" width="585" height="996" alt="almanac on a phone: a glowing globe with Anchorage, Alaska marked and the Calibration instrument live" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">A</div><div class="nm">almanac</div></div>
       <div class="tag">A living globe of Earth's systems — the planet, right now.</div>
-      <div class="meta"><span class="ax">earth systems</span> <span class="go">open ↗</span></div>
-    </a>
-    <a class="card" style="--a:#00e5cf" href="https://codereimagine.github.io/velocity/">
+      <div class="meta"><span class="ax">earth systems</span><span class="lead" aria-hidden="true"></span><span class="links"><a class="rd" href="https://github.com/codereimagine/almanac#readme" aria-label="almanac README on GitHub"><i aria-hidden="true">¶</i>readme</a><a class="go" href="https://codereimagine.github.io/almanac/" aria-label="Open almanac">open ↗</a></span></div>
+    </div>
+    <div class="card" style="--a:#00e5cf">
       <div class="shot"><img src="screens/velocity.jpg" width="585" height="996" alt="velocity on a phone: a completed speed test on a three-hand chronograph dial" loading="lazy" decoding="async"></div>
       <div class="top"><div class="badge">V</div><div class="nm">velocity</div></div>
       <div class="tag">A network speed test, built as one chronograph instrument.</div>
-      <div class="meta"><span class="ax">network</span> <span class="go">open ↗</span></div>
-    </a>
+      <div class="meta"><span class="ax">network</span><span class="lead" aria-hidden="true"></span><span class="links"><a class="rd" href="https://github.com/codereimagine/velocity#readme" aria-label="velocity README on GitHub"><i aria-hidden="true">¶</i>readme</a><a class="go" href="https://codereimagine.github.io/velocity/" aria-label="Open velocity">open ↗</a></span></div>
+    </div>
   </main>
 
   <div class="ethos">
     <span>private by default</span>
-    <span>no accounts · no trackers · no ads</span>
-    <span>most install &amp; work offline</span>
+    <span>no ads · no trackers · no accounts</span>
+    <span>design study</span>
     <span>fully open — Apache-2.0</span>
   </div>
 
